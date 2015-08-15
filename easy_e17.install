@@ -1,0 +1,22 @@
+post_install() {
+    echo "==> Creating cache directory..."
+    mkdir -p /var/cache/e17_src
+    echo
+    echo "To start the installation, use 'easy_e17.sh -i'. To upgrade, use 'easy_e17.sh -u'."
+    echo "See 'easy_e17.sh --help' for more options."
+    echo "========================"
+    echo "A config file has been installed in /etc/easy_e17.conf."
+    echo
+}
+
+post_upgrade() {
+    echo "==> Moving cache directory..."
+    mv /var/cache/easy_e17 /var/cache/e17_src
+    echo
+    echo "See 'easy_e17.sh --help' for details."
+}
+
+pre_remove()   {
+    echo "==> Deleting cache directory..."
+    rm -r /var/cache/e17_src
+}
